@@ -246,6 +246,77 @@ video.rk{width:100%;height:100%;object-fit:cover;opacity:.4}
 @keyframes up{from{opacity:0;transform:translateY(16px)}}
 .bless-form input,.bless-form textarea{font:inherit;font-size:16px;padding:12px 14px;border-radius:10px;border:1.5px solid var(--gold);background:rgba(255,250,240,.96);color:var(--ink);resize:none}
 .bless-form textarea{min-height:92px}
+/* shagun (UPI) */
+@property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
+[hidden]{display:none!important}
+.sg-lead{max-width:560px}
+.sg-grid{display:grid;gap:28px;margin-top:26px;justify-items:center;align-items:start}
+.sg-cardw{position:relative;z-index:25;perspective:900px}
+@media(min-width:760px){.sg-grid{grid-template-columns:auto minmax(0,360px);justify-content:center;gap:40px;align-items:center}}
+.sg-card{position:relative;width:min(300px,82vw);padding:22px 18px 18px;background:rgba(255,250,240,.97);border:1px solid var(--gold);box-shadow:0 18px 44px rgba(122,26,34,.22);transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;will-change:transform}
+.sg-card::after{content:"";position:absolute;inset:5px;border:1px solid rgba(184,138,58,.4);pointer-events:none}
+.sg-card .glare{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.7),transparent 55%);opacity:0;transition:opacity .4s}
+.sg-card:hover .glare{opacity:1}
+.sg-frame{position:relative;padding:5px;border-radius:20px;background:conic-gradient(from var(--ang),#8a5a1c,#f3d48a,#fff3c4,#d4a24a,#8a5a1c);animation:angspin 7s linear infinite;transform:translateZ(26px);box-shadow:0 8px 22px rgba(122,26,34,.25)}
+@keyframes angspin{to{--ang:360deg}}
+.sg-qrbox{position:relative;background:#fff;border-radius:15px;overflow:hidden;line-height:0}
+.sg-qrbox img{display:block;width:100%;height:auto}
+.sg-scan{position:absolute;left:0;right:0;top:0;height:2px;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(184,138,58,.4),transparent);animation:scan 3.6s ease-in-out infinite}
+@keyframes scan{0%,100%{top:1%}50%{top:98%}}
+.sg-cap{margin-top:14px;font-size:17px;color:var(--maroon);transform:translateZ(14px)}
+.sg-brands{font-size:12.5px;color:var(--muted);margin:2px 0 12px}
+.sg-side{width:100%;max-width:380px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.sg-lbl{font-size:14px;color:var(--muted);margin-bottom:-4px}
+.sg-id{display:flex;align-items:center;gap:8px;width:100%;background:var(--paper);border:1.5px dashed var(--gold);border-radius:14px;padding:6px 6px 6px 14px;box-shadow:0 6px 16px rgba(122,26,34,.1)}
+.sg-id code{flex:1;min-width:0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:clamp(14px,4.3vw,17px);color:var(--maroon);text-align:left;user-select:all;-webkit-user-select:all;overflow-wrap:anywhere}
+.sg button,.ty button{font-family:inherit}
+.sg-copy{flex-shrink:0;min-height:40px;padding:8px 14px;border-radius:10px;border:1.5px solid var(--gold);background:var(--maroon);color:var(--gold2);font-size:14px;cursor:pointer;transition:transform .25s cubic-bezier(.3,1.8,.5,1),background .2s;white-space:nowrap}
+.sg-copy:active{transform:scale(.94)}
+.sg-copy.ok{background:#2f5a14;border-color:#8bbf45;color:#eaf7d4}
+.sg-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.chip{width:clamp(52px,15vw,60px);aspect-ratio:1;border-radius:50%;border:2px solid #8a5a1c;background:radial-gradient(circle at 35% 30%,#fff3c4,#e8c06a 45%,#b88a3a 85%);color:#4a0c12;font:700 clamp(12px,3.4vw,14px)/1 'Cinzel',serif;cursor:pointer;box-shadow:inset 0 0 0 2px rgba(255,243,196,.7),0 4px 10px rgba(122,26,34,.25);transition:transform .3s cubic-bezier(.3,1.8,.5,1),box-shadow .3s,filter .3s}
+.chip:hover{transform:translateY(-3px) rotate(-6deg)}
+.chip[aria-pressed=true]{transform:scale(1.14);filter:saturate(1.2);box-shadow:inset 0 0 0 2px #fff,0 0 0 3px var(--maroon),0 0 22px 4px rgba(245,158,11,.65)}
+.sg-pay{width:100%;justify-content:center;font-size:16px;padding:13px 22px}
+.sg-apps{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;width:100%}
+.sg-apps a{flex:1 1 90px;text-align:center;padding:10px 8px;border:1.5px solid var(--gold);border-radius:12px;background:var(--paper);color:var(--maroon);font-size:15px}
+.sg-hint{font-size:13.5px;color:var(--muted);margin:0;text-wrap:balance}
+.sg-dlnote{margin:10px 6px 0;font-size:12.5px;transform:translateZ(8px)}
+.sg-iab{padding:8px 12px;border:1px solid var(--gold);border-radius:12px;background:var(--paper)}
+.sg-copy.nudge{animation:nudge .6s ease 3}
+@keyframes nudge{50%{transform:scale(1.12);box-shadow:0 0 0 5px rgba(184,138,58,.35)}}
+.sg-note{max-width:520px;margin:26px auto 0;font-size:16px;color:#8a5a1c;font-style:italic;text-wrap:balance}
+.sg-done{width:100%;justify-content:center}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));z-index:65;max-width:min(92vw,420px);padding:10px 18px;border-radius:999px;background:rgba(74,12,18,.97);color:var(--gold2);border:1.5px solid var(--gold);font-size:15px;line-height:1.4;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.35);opacity:0;visibility:hidden;transform:translate(-50%,16px);transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1),visibility 0s .45s}
+.toast.on{opacity:1;visibility:visible;transform:translate(-50%,0);transition:opacity .35s,transform .45s cubic-bezier(.2,.8,.2,1)}
+.toast.ask{border-radius:18px;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 18px;width:min(92vw,360px)}
+.toast .row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.toast .row button{border:1.5px solid var(--gold);background:var(--maroon);color:var(--gold2);padding:8px 14px;border-radius:999px;font-size:14px;cursor:pointer;min-height:40px}
+.toast .row button.y{background:var(--gold2);color:var(--deep)}
+/* thank-you */
+.ty{position:fixed;inset:0;z-index:60;display:flex;padding:56px 16px 24px;background:radial-gradient(ellipse at 50% 38%,rgba(122,26,34,.93),rgba(34,5,9,.97));-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);overflow:auto;opacity:0;visibility:hidden;transition:opacity .6s,visibility 0s .6s}
+.ty.on{opacity:1;visibility:visible;transition:opacity .6s}
+body.ty-open{overflow:hidden}
+body.ty-open #fx{z-index:70}
+.ty-card{position:relative;width:100%;max-width:440px;margin:auto;text-align:center;padding:62px 24px 24px;background:linear-gradient(180deg,#fffaf0,#f6ecd9);color:var(--ink);border:2px solid var(--gold);outline:1px solid rgba(184,138,58,.6);outline-offset:6px;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.55);transform:translateY(34px) scale(.9);transition:transform .9s cubic-bezier(.2,1.25,.3,1)}
+.ty.on .ty-card{transform:none}
+.ty-x{position:absolute;top:-4px;right:-4px;width:44px;height:44px;border:0;background:none;color:var(--maroon);font-size:26px;line-height:1;cursor:pointer;border-radius:50%}
+.ty-ico{position:absolute;left:50%;top:-46px;margin-left:-46px;width:92px;height:92px;border-radius:50%;display:grid;place-items:center;font-size:42px;background:radial-gradient(circle at 40% 35%,#9a2530,#5a1118 75%);border:3px solid #d4a24a;box-shadow:0 0 0 6px rgba(212,162,74,.25),0 0 0 7px #d4a24a,0 0 46px rgba(243,212,138,.6);animation:pulse 2.4s ease-in-out infinite}
+.ty-t{font-size:clamp(25px,7vw,33px);line-height:1.3;margin:0 0 12px;opacity:0;transition:opacity .9s .9s;background:linear-gradient(100deg,#7a1a22 15%,#c2415a 40%,#7a1a22 65%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite;overflow-wrap:anywhere}
+.ty-l{margin:0 0 10px;font-size:17px;line-height:1.7;text-wrap:pretty;opacity:0;transform:translateY(10px);transition:opacity .9s,transform .9s}
+.ty-l.sl{font-style:italic;color:#8a5a1c;font-size:16px}
+.ty.on .ty-t{opacity:1}
+.ty.on .ty-l{opacity:1;transform:none;transition-delay:calc(var(--k,0)*.7s + 1.8s)}
+.ty-sig{margin-top:6px;opacity:0;transition:opacity 1s 3.9s}
+.ty.on .ty-sig{opacity:1}
+.ty-sig .hmono{color:var(--maroon);font-size:46px}
+.ty-sig .hmono span{color:#8a5a1c}
+.ty-sig div:last-child{font-size:15px;color:var(--muted);text-wrap:balance}
+.ty-name{margin:14px auto 4px;display:block;width:min(260px,100%);text-align:center;font:inherit;font-size:16px;padding:8px 10px;border:0;border-bottom:1.5px solid var(--gold);background:transparent;color:var(--ink);border-radius:0}
+.ty-name:focus{outline:none;border-bottom-color:var(--maroon)}
+.ty-acts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:14px}
+.ty .diyas{margin:14px 0 0;gap:22px}
+.ty .diya{transform:scale(.8)}
 /* bottom bar */
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:rgba(74,12,18,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1.5px solid var(--gold);padding:6px 6px calc(6px + env(safe-area-inset-bottom));transform:translateY(120%);transition:transform .6s cubic-bezier(.2,.8,.2,1) 2s}
 body.open .bar{transform:none}
@@ -404,6 +475,40 @@ body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 </div>
 </section>
 
+<section class="s floral sg" id="shagun">
+<div class="wrap rv">
+<div class="eyebrow h-sub" data-en="Shagun">॥ शगुन ॥</div>
+<h2 class="h-dis" data-en="Send Your Shagun">शगुन भेजें</h2>
+<div class="orn"><i></i><em></em><i></i></div>
+<p class="lead sg-lead rc" data-en="Your presence is the greatest gift of all. If you wish to bless the couple with shagun from afar, you may send it through any UPI app.">आपकी उपस्थिति ही हमारे लिए सबसे बड़ा उपहार है। यदि आप दूर से भी जोड़े को शगुन भेजना चाहें, तो किसी भी UPI ऐप से भेज सकते हैं।</p>
+<div class="sg-grid">
+<div class="sg-cardw rc" style="--i:1">
+<div class="sg-card" id="sgCard"><div class="glare"></div>
+<div class="sg-frame"><div class="sg-qrbox"><img id="sgQr" src="upi-qr.png" width="260" height="260" loading="lazy" decoding="async" alt="UPI QR code — scan with any UPI app to send shagun"><i class="sg-scan"></i></div></div>
+<div class="sg-cap h-sub" data-en="Scan with any UPI app">किसी भी UPI ऐप से स्कैन करें</div>
+<div class="sg-brands">PhonePe · Google Pay · Paytm · BHIM</div>
+<a class="btn ghost" id="sgDl" href="upi-qr.png" download="Anuj-Meenakshi-Shagun-QR.png" data-en="⬇ Download QR">⬇ QR डाउनलोड करें</a>
+<p class="sg-hint sg-dlnote" data-en="Save the QR, then scan it from your gallery inside the UPI app. (Some apps limit gallery-QR payments to ₹2,000.)">QR सेव करें, फिर UPI ऐप में गैलरी से स्कैन करें। (कुछ ऐप्स में गैलरी-QR की सीमा ₹2,000 है।)</p>
+</div>
+</div>
+<div class="sg-side rc" style="--i:2">
+<p class="sg-hint sg-iab" id="sgIab" hidden data-en="ℹ️ If UPI apps won’t open inside this app, use the ⋮ / share menu and choose “Open in Chrome / Safari”.">ℹ️ इस ऐप के भीतर UPI ऐप न खुले तो ⋮ / शेयर मेनू से “Chrome / Safari में खोलें” चुनें।</p>
+<div class="sg-lbl">UPI ID</div>
+<div class="sg-id"><code id="upiId"></code><button class="sg-copy" id="sgCopy" type="button"></button></div>
+<div class="sg-lbl" data-en="Pick an amount, or enter your own in the app">राशि चुनें, या ऐप में अपनी राशि भरें</div>
+<div class="sg-chips" id="sgChips" role="group" aria-label="Shagun amount"></div>
+<a class="btn sg-pay mag" id="sgPay" href="#shagun" hidden></a>
+<div class="sg-lbl" id="sgAppsLbl" hidden data-en="Open in your UPI app">अपने UPI ऐप में खोलें</div>
+<div class="sg-apps" id="sgApps" hidden></div>
+<p class="sg-hint" id="sgHint" hidden data-en="If the app doesn’t open or declines the link, copy the UPI ID and use “Pay to UPI ID” in any UPI app, or scan the QR.">ऐप न खुले या लिंक स्वीकार न करे, तो UPI ID कॉपी कर किसी भी UPI ऐप में “UPI ID पर भेजें” चुनें, या QR स्कैन करें।</p>
+<p class="sg-hint" id="sgDesk" hidden data-en="📱 Scan this QR with your phone’s UPI app, or copy the UPI ID.">📱 अपने फ़ोन के UPI ऐप से यह QR स्कैन करें, या UPI ID कॉपी करें।</p>
+<button class="btn ghost sg-done mag" id="sgDone" type="button" data-en="🙏 I’ve sent my shagun">🙏 मैंने शगुन भेज दिया</button>
+</div>
+</div>
+<p class="sg-note rc" style="--i:3" data-en="Shagun is entirely optional — your blessings are our greatest treasure.">शगुन पूर्णतः ऐच्छिक है — आपका आशीर्वाद ही हमारी सबसे बड़ी पूँजी है।</p>
+</div>
+</section>
+
 <footer>
 <div class="glowbg"></div>
 <div class="diyas" id="diyas">
@@ -422,11 +527,29 @@ body{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 <a href="https://maps.app.goo.gl/NpBtzfgJNXimHX499?g_st=ac" target="_blank" rel="noopener"><i>📍</i><span data-en="Venue">स्थल</span></a>
 <a href="tel:+919917592685"><i>📞</i><span data-en="Call">कॉल</span></a>
 <a href="#bless"><i>🪔</i><span data-en="Bless">आशीर्वाद</span></a>
+<a href="#shagun"><i>💝</i><span data-en="Shagun">शगुन</span></a>
 <button id="shareBtn"><i>💬</i><span data-en="Share">शेयर</span></button>
 <button id="langBtn" aria-label="Language"><i>A</i><span>English</span></button>
 <button id="snd" aria-label="Sound"><i>🔔</i><span data-en="Sound">ध्वनि</span></button>
 <button id="mus" aria-label="Music" style="display:none"><i>🎵</i><span data-en="Music">संगीत</span></button>
 </nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="toast ask" id="payAsk" role="alertdialog" aria-labelledby="payAskQ"><span id="payAskQ"></span><div class="row"><button type="button" class="y" id="payAskY"></button><button type="button" id="payAskN"></button></div></div>
+
+<div class="ty" id="ty" role="dialog" aria-modal="true" aria-labelledby="tyTitle" aria-hidden="true">
+<div class="ty-card">
+<button class="ty-x" id="tyX" type="button" aria-label="Close">✕</button>
+<div class="ty-ico" aria-hidden="true">🙏</div>
+<h2 class="ty-t h-dis" id="tyTitle"></h2>
+<p class="ty-l" style="--k:0" id="tyL1"></p>
+<p class="ty-l" style="--k:1" id="tyL2"></p>
+<p class="ty-l sl h-sub" style="--k:2" id="tyL3"></p>
+<div class="ty-sig"><div class="hmono">A <span>&amp;</span> M</div><div id="tySig"></div></div>
+<input class="ty-name" id="tyName" type="text" maxlength="30" autocomplete="given-name" enterkeyhint="done">
+<div class="ty-acts"><button class="btn" id="tyWa" type="button"></button><button class="btn ghost" id="tyClose" type="button"></button></div>
+<div class="diyas" aria-hidden="true"><div class="diya"><div class="fl"></div><div class="bowl"></div></div><div class="diya"><div class="fl"></div><div class="bowl"></div></div><div class="diya"><div class="fl"></div><div class="bowl"></div></div></div>
+</div>
+</div>
 <audio id="music" src="music.mp3" loop preload="none"></audio>
 
 <script>
@@ -473,8 +596,8 @@ for(let i=0;i<ns;i++){const mid=(ns-1)/2,len=3+Math.round((Math.abs(i-mid)/mid)*
   strands.insertAdjacentHTML('beforeend',`<div class="strand" data-swing>${h}<div class="tassel"></div></div>`)}
 
 /* canvas */
-const cv=$('#fx'),cx=cv.getContext('2d');let W,H;
-const rs=()=>{const d=Math.min(2,devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0)};rs();addEventListener('resize',rs);
+const cv=$('#fx'),cx=cv.getContext('2d'),barEl=$('.bar');let W,H,FLOOR=0;
+const rs=()=>{const d=Math.min(2,devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);FLOOR=H-(barEl.offsetHeight||60)-(W>=900?14:0)};rs();addEventListener('resize',rs);
 const COL=['#e8849a','#d9546e','#f59e0b','#f97316','#fde7c2','#c2415a','#ffb4c2','#fbbf24'];
 const P=[],S=[];
 const mk=(x,y,vx,vy,b)=>({x,y,vx,vy,r:Math.random()*6.3,vr:(Math.random()-.5)*.08,s:5+Math.random()*7,c:COL[Math.random()*COL.length|0],ph:Math.random()*6.3,fl:Math.random()*6.3,fs:.03+Math.random()*.06,b,a:b?1:0});
@@ -509,7 +632,7 @@ H_.forEach(h=>h.el.addEventListener('click',e=>{e.stopPropagation();ensureAudio(
 const rings=$('#rings'),r1=$('#r1'),r2=$('#r2'),coupleSec=$('#couple');let met=false;
 /* cards tilt, magnetic buttons */
 if(FINE&&!RM){
-  $$('.card').forEach(c=>{c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  $$('.card,.sg-card').forEach(c=>{c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
     c.style.transform=`rotateY(${x*14}deg) rotateX(${-y*14}deg) translateZ(0)`;c.style.setProperty('--gx',(x+.5)*100+'%');c.style.setProperty('--gy',(y+.5)*100+'%')});
     c.addEventListener('pointerleave',()=>c.style.transform='')});
   $$('.mag').forEach(b=>{b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.4}px)`});
@@ -549,11 +672,12 @@ const loop=now=>{const t=now-t0;cx.clearRect(0,0,W,H);
     p.vy-=sk*.02;
     if(mx>-999){const dx=p.x-mx,dy=p.y-my,d2=dx*dx+dy*dy;if(d2<12100&&d2>1){const d=Math.sqrt(d2),f=(1-d/110)*.9;p.vx+=dx/d*f+mvx*.04;p.vy+=dy/d*f+mvy*.04;p.vr+=(Math.random()-.5)*.05}}
     p.vr*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr+p.vx*.008;p.fl+=p.fs+Math.abs(p.vx)*.01;
-    if(!p.b){if(opened)p.a=Math.min(1,p.a+.01);if(p.y>H+20){p.y=-20;p.x=Math.random()*W;p.vy=.5}if(p.y<-60)p.y=H+10;if(p.x<-30)p.x=W+20;if(p.x>W+30)p.x=-20}
+    if(!p.b){if(opened)p.a=Math.min(tyOpen?.28:1,p.a+.01);if(p.y>H+20){p.y=-20;p.x=Math.random()*W;p.vy=.5}if(p.y<-60)p.y=H+10;if(p.x<-30)p.x=W+20;if(p.x>W+30)p.x=-20}
     else{if(p.vy>0)p.a-=.004;if(p.y>H+30||p.a<=0){P.splice(i,1);continue}}
     petal(p)}
   cx.globalAlpha=1;
   for(let i=S.length-1;i>=0;i--){const q=S[i];q.x+=q.vx;q.y+=q.vy;q.vy+=.03;q.l-=.022;if(q.l<=0){S.splice(i,1);continue}star(q)}
+  coinStep();sgTilt();
   /* pendulums */
   const sy=scrollY;
   H_.forEach(h=>{const r=h.rect;if(!r)return;
@@ -664,6 +788,127 @@ bd.onclick=e=>{e.stopPropagation();if(bd.classList.contains('lit'))return;ensure
 $('#bSend').onclick=e=>{e.stopPropagation();const n=$('#bName').value.trim(),m=$('#bMsg').value.trim();
   const txt='🪔 अनुज एवं मीनाक्षी के लिए आशीर्वाद / Blessings for Anuj & Meenakshi\n\n'+(m||'शुभकामनाएं! 🙏')+(n?'\n\n— '+n:'');
   open('https://wa.me/918979016694?text='+encodeURIComponent(txt),'_blank')};
+
+/* ===== shagun (UPI) + thank-you ===== */
+/* single source of truth for the payee — change it here only (QR image: upi-qr.png) */
+const UPI={vpa:'7618425000@ibl',pn:'TULSI & SONS',tn:'Shagun - Anuj and Meenakshi'};
+const WA_NUM='918979016694',AMTS=[101,251,501,1101,2101];
+const UA=navigator.userAgent,IAB=/FBAN|FBAV|FB_IAB|FB4A|Instagram|Line\/|Snapchat|MicroMessenger/i.test(navigator.userAgent),IOS=/iPhone|iPad|iPod/i.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),ANDR=/Android/i.test(UA),MOB=IOS||ANDR;
+const APPS=[['PhonePe','phonepe://pay?'],['GPay','gpay://upi/pay?'],['Paytm','paytmmp://pay?']];
+const T={
+hi:{copy:'📋 कॉपी',copied:'✓ कॉपी हुआ',cpOk:'UPI ID कॉपी हो गई 🙏',cpSel:'UPI ID चुनी गई है — कॉपी कर लें',pay:'📲 UPI ऐप खोलें',payA:a=>`📲 ₹${a} शगुन भेजें`,askQ:'क्या आपने शगुन भेज दिया?',askY:'हाँ, भेज दिया 🙏',askN:'अभी नहीं',saved:'QR डाउनलोड हो रहा है ⬇',noapp:'ऐप नहीं खुला? UPI ID कॉपी करें या QR स्कैन करें 🙏',
+ tyT:n=>n?`हृदय से धन्यवाद, ${n} जी!`:'हृदय से धन्यवाद!',l1:'आपके स्नेह और शगुन से हमारा हृदय आभार से भर उठा है।',l2:'आपका आशीर्वाद ही हमारे नए जीवन की सबसे अनमोल पूँजी है। ईश्वर आपको और आपके परिवार को सुख, स्वास्थ्य और अपार समृद्धि प्रदान करें।',l3:'॥ सर्वे भवन्तु सुखिनः ॥',sig:'अनुज एवं मीनाक्षी तथा राणा व चौधरी परिवार',ph:'आपका नाम (वैकल्पिक)',wa:'💬 परिवार को बताएँ',close:'बंद करें',
+ waMsg:n=>'🙏 नमस्ते! मैंने अनुज एवं मीनाक्षी के लिए शगुन भेज दिया है।'+(n?'\n\n— '+n:'')},
+en:{copy:'📋 Copy',copied:'✓ Copied',cpOk:'UPI ID copied 🙏',cpSel:'UPI ID selected — please copy it',pay:'📲 Open UPI app',payA:a=>`📲 Send ₹${a} shagun`,askQ:'Did you send the shagun?',askY:'Yes, I did 🙏',askN:'Not yet',saved:'Downloading QR ⬇',noapp:'App didn’t open? Copy the UPI ID or scan the QR 🙏',
+ tyT:n=>n?`Heartfelt thanks, ${n}!`:'Heartfelt thanks!',l1:'Your love and shagun have filled our hearts with gratitude.',l2:'Your blessing is the most precious gift as we begin this new chapter together. May God shower you and your family with happiness, health and prosperity.',l3:'॥ Sarve Bhavantu Sukhinah ॥',sig:'Anuj & Meenakshi with the Rana & Chaudhary families',ph:'Your name (optional)',wa:'💬 Let the family know',close:'Close',
+ waMsg:n=>'🙏 Namaste! I have sent my shagun for Anuj & Meenakshi.'+(n?'\n\n— '+n:'')}};
+const t=(k,...a)=>{const v=T[LANG][k];return typeof v==='function'?v(...a):v};
+const el=id=>document.getElementById(id);
+const vib=p=>{if(navigator.vibrate)try{navigator.vibrate(p)}catch(_){}};
+let amt=0,payT=0,hiddenAt=0;
+const upiQ=()=>'pa='+encodeURIComponent(UPI.vpa).replace(/%40/g,'@')+'&pn='+encodeURIComponent(UPI.pn)+'&cu=INR&tn='+encodeURIComponent(UPI.tn)+(amt?'&am='+amt+'.00':'');
+
+/* coin physics: gravity, floor + wall bounces, settle, fade; settled coins can be flicked */
+const K=[],COINCAP=90,spr=document.createElement('canvas');spr.width=spr.height=64;
+(()=>{const g=spr.getContext('2d'),gr=g.createRadialGradient(24,22,4,32,32,32);gr.addColorStop(0,'#fff6cf');gr.addColorStop(.45,'#e8c06a');gr.addColorStop(.85,'#b88a3a');gr.addColorStop(1,'#6b4414');
+  g.fillStyle=gr;g.beginPath();g.arc(32,32,30,0,6.2832);g.fill();g.lineWidth=2.5;g.strokeStyle='#8a5a1c';g.stroke();
+  g.lineWidth=1.5;g.strokeStyle='rgba(255,243,196,.8)';g.beginPath();g.arc(32,32,24,0,6.2832);g.stroke();
+  g.fillStyle='#7a1a22';g.font='bold 30px Georgia,serif';g.textAlign='center';g.textBaseline='middle';g.fillText('₹',32,34)})();
+const mkCoin=(x,y,vx,vy)=>{if(K.length>=COINCAP)K.shift();K.push({x,y,vx,vy,s:15+Math.random()*9,fl:Math.random()*6.3,fs:.18+Math.random()*.25,rest:0,a:1,r:(Math.random()-.5)*.6})};
+function coins(x,y,n=10,sp=8,fan=2.2){if(RM)return;for(let i=0;i<n;i++){const a=-Math.PI/2+(Math.random()-.5)*fan,v=sp*(.5+Math.random()*.7);mkCoin(x,y,Math.cos(a)*v,Math.sin(a)*v)}}
+function coinRain(n){if(RM)return;for(let i=0;i<n;i++)setTimeout(()=>mkCoin(Math.random()*W,-20-Math.random()*40,(Math.random()-.5)*2,1+Math.random()*3),i*45)}
+function coinStep(){for(let i=K.length-1;i>=0;i--){const c=K[i],h=c.s/2;
+  c.vy+=.5;c.x+=c.vx;c.y+=c.vy;c.fl+=c.fs;
+  if(c.x<h){c.x=h;c.vx=Math.abs(c.vx)*.6}else if(c.x>W-h){c.x=W-h;c.vx=-Math.abs(c.vx)*.6}
+  if(c.y>FLOOR-h&&c.vy>=0){c.y=FLOOR-h;if(c.vy>2.4){c.vy*=-.5;c.vx*=.8;c.fs*=.75}else{c.vy=0;c.vx*=.82;c.fs*=.7;c.rest++}}
+  if(c.rest){c.fl+=(Math.round(c.fl/Math.PI)*Math.PI-c.fl)*.25;
+    if(mx>-999&&Math.abs(mvx)+Math.abs(mvy)>3){const dx=c.x-mx,dy=c.y-my;if(dx*dx+dy*dy<2800){c.vy=-(3+Math.random()*3);c.vx+=mvx*.25;c.fs=.2;c.rest=0}}
+    if(c.rest>45)c.a-=.014}
+  if(c.a<=0||c.y>H+80){K.splice(i,1);continue}
+  cx.save();cx.globalAlpha=c.a;cx.translate(c.x,c.y);cx.rotate(c.r);cx.scale(Math.max(.12,Math.abs(Math.cos(c.fl))),1);cx.drawImage(spr,-h,-h,c.s,c.s);cx.restore()}}
+/* temple-bell's little sibling: a bright coin "ching" */
+const ching=(v=.09)=>{if(!sound||!AC)return;const n=AC.currentTime,g=AC.createGain();g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime(v,n+.004);g.gain.exponentialRampToValueAtTime(.0001,n+.9);g.connect(AC.destination);
+  [[2093,1],[3136,.6],[4186,.3]].forEach(([f,a])=>{const o=AC.createOscillator(),og=AC.createGain();o.frequency.value=f*(1+(Math.random()-.5)*.01);og.gain.value=a;o.connect(og);og.connect(g);o.start(n);o.stop(n+1)})};
+/* phones: tilt the phone and the QR card tilts with it */
+const sgc=el('sgCard');let lastTilt=0;
+function sgTilt(){if(FINE||RM||Math.abs(tilt-lastTilt)<.01)return;lastTilt=tilt;sgc.style.transform='rotateY('+(tilt*9).toFixed(2)+'deg)'}
+
+/* toast + "did you pay?" prompt */
+let toastT;const toast=(m,ms=2600)=>{const e=el('toast');e.textContent=m;e.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>e.classList.remove('on'),ms)};
+const ask=el('payAsk'),hideAsk=()=>ask.classList.remove('on');
+const showAsk=()=>{if(tyOpen)return;el('toast').classList.remove('on');el('payAskQ').textContent=t('askQ');el('payAskY').textContent=t('askY');el('payAskN').textContent=t('askN');ask.classList.add('on')};
+el('payAskY').onclick=e=>{e.stopPropagation();hideAsk();openTY()};el('payAskN').onclick=e=>{e.stopPropagation();hideAsk()};
+
+/* UPI id, amount chips, links */
+el('upiId').textContent=UPI.vpa;
+const chipsEl=el('sgChips');
+AMTS.forEach(a=>{const b=document.createElement('button');b.type='button';b.className='chip';b.dataset.a=a;b.textContent='₹'+a.toLocaleString('en-IN');b.setAttribute('aria-pressed','false');chipsEl.appendChild(b)});
+chipsEl.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;e.stopPropagation();const a=+b.dataset.a;amt=amt===a?0:a;
+  if(amt){ensureAudio();ching(.08);vib(10);const r=b.getBoundingClientRect();coins(r.left+r.width/2,r.top+r.height/2,5,7,1.6)}refreshSg()});
+const appsEl=el('sgApps');let failT=0;
+/* tapping an app link: if the page never loses focus/visibility within ~2.2s, nothing opened → nudge towards copy-ID / QR */
+const launch=()=>{payT=Date.now();ensureAudio();clearTimeout(failT);const stop=()=>{clearTimeout(failT);removeEventListener('blur',stop);removeEventListener('pagehide',stop)};
+  addEventListener('blur',stop);addEventListener('pagehide',stop);
+  failT=setTimeout(()=>{stop();if(document.hidden)return;toast(t('noapp'),4800);const c=el('sgCopy');c.classList.remove('nudge');void c.offsetWidth;c.classList.add('nudge');setTimeout(()=>c.classList.remove('nudge'),2000)},2200)};
+APPS.forEach(([n,s])=>{const a=document.createElement('a');a.textContent=n;a.dataset.s=s;a.addEventListener('click',e=>{e.stopPropagation();launch()});appsEl.appendChild(a)});
+el('sgPay').addEventListener('click',e=>{e.stopPropagation();launch();ching(.06)});
+/* Android: OS chooser via upi://pay.  iOS: generic upi:// is unreliable → per-app buttons.  Desktop: no handler → hint only. */
+if(MOB)el('sgHint').hidden=false;else el('sgDesk').hidden=false;
+if(ANDR)el('sgPay').hidden=false;
+if(IOS){appsEl.hidden=false;el('sgAppsLbl').hidden=false}
+if(IAB&&MOB)el('sgIab').hidden=false;
+function refreshSg(){
+  const cp=el('sgCopy');cp.textContent=cp.classList.contains('ok')?t('copied'):t('copy');
+  const pay=el('sgPay');pay.textContent=amt?t('payA',amt.toLocaleString('en-IN')):t('pay');pay.href='upi://pay?'+upiQ();
+  appsEl.querySelectorAll('a').forEach(a=>a.href=a.dataset.s+upiQ());
+  chipsEl.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.a===amt)));
+  el('tyName').placeholder=t('ph');el('tyX').setAttribute('aria-label',t('close'));
+  if(tyOpen)renderTY()}
+const _sl=window.setLang;window.setLang=l=>{_sl(l);refreshSg()};
+
+/* copy UPI id */
+const copyTxt=async s=>{try{await navigator.clipboard.writeText(s);return true}catch(_){}
+  try{const ta=document.createElement('textarea');ta.value=s;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;top:0;left:0;opacity:0;font-size:16px';document.body.appendChild(ta);ta.focus();ta.select();ta.setSelectionRange(0,s.length);const ok=document.execCommand('copy');ta.remove();return ok}catch(_){return false}};
+el('sgCopy').onclick=async e=>{e.stopPropagation();const b=e.currentTarget;ensureAudio();const ok=await copyTxt(UPI.vpa);
+  if(ok){b.classList.add('ok');refreshSg();toast(t('cpOk'));ching();vib(15);const r=b.getBoundingClientRect();coins(r.left+r.width/2,r.top,10,9);setTimeout(()=>{b.classList.remove('ok');refreshSg()},2000)}
+  else{const r=document.createRange();r.selectNodeContents(el('upiId'));const s=getSelection();s.removeAllRanges();s.addRange(r);toast(t('cpSel'))}};
+
+/* download QR — iOS: share sheet ("Save Image" → Photos, which UPI apps can scan from); elsewhere: plain download */
+let qrFile=null;
+fetch('upi-qr.png').then(r=>r.ok?r.blob():null).then(b=>{if(b)qrFile=new File([b],'Anuj-Meenakshi-Shagun-QR.png',{type:'image/png'})}).catch(()=>{});
+el('sgDl').addEventListener('click',e=>{e.stopPropagation();
+  if(IOS&&qrFile&&navigator.canShare&&navigator.canShare({files:[qrFile]})){e.preventDefault();navigator.share({files:[qrFile]}).catch(()=>{})}else toast(t('saved'))});
+
+/* back from the UPI app → gently ask whether the payment went through */
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){hiddenAt=Date.now();clearTimeout(failT);return}
+  if(payT&&hiddenAt&&Date.now()-hiddenAt>2500&&Date.now()-payT<20*6e4){payT=0;setTimeout(showAsk,700)}});
+
+/* thank-you */
+let tyOpen=false,lastFocus=null;const tyEl=el('ty'),tyIn=el('tyName');
+const getName=()=>tyIn.value.trim();
+function renderTY(){el('tyTitle').textContent=t('tyT',getName());el('tyL1').textContent=t('l1');el('tyL2').textContent=t('l2');el('tyL3').textContent=t('l3');el('tySig').textContent=t('sig');el('tyWa').textContent=t('wa');el('tyClose').textContent=t('close')}
+function openTY(name){if(tyOpen)return;tyOpen=true;lastFocus=document.activeElement;
+  if(name)tyIn.value=name.slice(0,30);else if(!tyIn.value){let s='';try{s=localStorage.getItem('sagai-name')||''}catch(_){}tyIn.value=(s||el('bName').value.trim()).slice(0,30)}
+  renderTY();hideAsk();el('toast').classList.remove('on');tyEl.setAttribute('aria-hidden','false');document.body.classList.add('ty-open');
+  requestAnimationFrame(()=>tyEl.classList.add('on'));
+  ensureAudio();bell(660,.16);setTimeout(()=>bell(990,.1),240);setTimeout(()=>bell(830,.08),520);setTimeout(()=>ching(.07),900);
+  setTimeout(()=>{coinRain(38);burst(W/2,H*.3,44,1.2)},350);setTimeout(()=>{burst(W*.2,H*.25,14,1);burst(W*.8,H*.25,14,1)},1100);
+  vib([30,40,30,40,60]);setTimeout(()=>el('tyClose').focus({preventScroll:true}),120)}
+function closeTY(){if(!tyOpen)return;tyOpen=false;tyEl.classList.remove('on');tyEl.setAttribute('aria-hidden','true');document.body.classList.remove('ty-open');try{lastFocus&&lastFocus.focus&&lastFocus.focus({preventScroll:true})}catch(_){}}
+tyIn.addEventListener('input',()=>{renderTY();try{localStorage.setItem('sagai-name',getName())}catch(_){}});
+el('tyClose').onclick=el('tyX').onclick=e=>{e.stopPropagation();closeTY()};
+tyEl.addEventListener('click',e=>{if(e.target===tyEl)closeTY()});
+el('tyWa').onclick=e=>{e.stopPropagation();open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(t('waMsg',getName())),'_blank')};
+el('sgDone').onclick=e=>{e.stopPropagation();openTY()};
+document.addEventListener('keydown',e=>{if(!tyOpen)return;
+  if(e.key==='Escape'){closeTY();return}
+  if(e.key==='Tab'){const f=[...tyEl.querySelectorAll('button,input')].filter(x=>x.offsetParent!==null);if(!f.length)return;const a=f[0],z=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
+/* link a guest straight to their thank-you:  …/?thanks=Rahul   or   …/#thanks */
+{const qp=new URLSearchParams(location.search),th=qp.get('thanks');
+ if(th!==null||location.hash==='#thanks')gate.addEventListener('click',()=>setTimeout(()=>openTY((th||'').trim()),2600))}
+refreshSg();
 })();
 </script>
 </body>

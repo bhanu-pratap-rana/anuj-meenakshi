@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Anuj and Meenakshi//Engagement Invitation//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:anuj-meenakshi-engagement-20261020@bhanu-pratap-rana.github.io
+DTSTAMP:20261015T000000Z
+DTSTART:20261020T043000Z
+DTEND:20261020T090000Z
+SUMMARY:Anuj & Meenakshi - Engagement Ceremony
+LOCATION:Y.P.R. Vegetable Garden\, Pillar 1032\, Near SRM University\, Modinagar
+DESCRIPTION:Engagement Ceremony 10:00 AM\, Lunch 12:00 PM. We look forward to your blessings.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Anuj & Meenakshi's engagement is tomorrow
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -564,6 +564,8 @@ html[data-lang="hi"] .stepper output{font-family:var(--f-hi-display);font-weight
 .film .yt{position:absolute;top:50%;left:50%;height:100%;aspect-ratio:16/9;transform:translate(-50%,-50%);pointer-events:none;opacity:0;transition:opacity 1.4s}
 .film .yt iframe,.film .yt>div{width:100%;height:100%;border:0}
 .film.live .yt{opacity:1}.film.live .poster{opacity:0}
+.film video.native{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s;pointer-events:none}
+.film.live video.native{opacity:1}.film.live video.native ~ .yt,.film video.native ~ .yt{display:none}
 .film .shade{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(40,14,8,.35) 100%)}
 .film-tag{position:absolute;top:16%;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:999px;background:rgba(58,27,20,.62);color:var(--gold-hi);font-size:.8rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);white-space:nowrap}
 .film-tag i{width:7px;height:7px;border-radius:50%;background:var(--gold-lt)}
@@ -1375,6 +1377,9 @@ const CONFIG = {
   // Wedding film: only the first `loopSeconds` play, then it restarts at 0.
   youtubeId: 'kQBRzTbaLEw',
   loopSeconds: 60,
+  // Self-hosted copy of the first minute (placed next to index.html). Plays natively, no ads.
+  // If the file is missing, the page falls back to the YouTube embed above.
+  videoFile: 'temple.mp4',
   // RSVP: with no endpoint, the guest's answer is composed into a WhatsApp message to this number.
   rsvpWhatsApp: '919917592685',
   // Optional: a Google Apps Script / Formspree / Supabase function URL that accepts a JSON POST.
@@ -1687,11 +1692,27 @@ const Petals = (() => {
 
 /* ---------------- media: YouTube film, silent, first 60 seconds on a loop ---------------- */
 const Media = (() => {
-  let player = null, ready = false, playing = false, guard = 0, kick = 0, inReception = false, reason = '';
+  let player = null, ready = false, playing = false, guard = 0, kick = 0, inReception = false, reason = '', nativeEl = null, onScreen = true;
   const film = () => $('#window'), note = () => $('#yt-note'), tap = () => $('#yt-tap');
   function showNote() { note().textContent = reason ? S(reason) : ''; }
   function fail(why) { if (playing) return; reason = why; film().classList.remove('live'); showNote(); }
-  function load() {
+  function load() { if (CONFIG.videoFile && location.protocol !== 'file:') native(loadYT); else loadYT(); }
+  function goLive() { playing = true; reason = ''; showNote(); tap().hidden = true; film().classList.add('live'); }
+  // Native <video>: muted + playsinline autoplays on every phone, starts instantly and never shows ads.
+  function native(fallback) {
+    const v = document.createElement('video');
+    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.loop = true; v.autoplay = true; v.preload = 'auto';
+    ['muted', 'playsinline', 'webkit-playsinline', 'autoplay', 'loop'].forEach((a) => v.setAttribute(a, ''));
+    v.setAttribute('disablepictureinpicture', ''); v.className = 'native'; v.src = CONFIG.videoFile;
+    v.addEventListener('playing', goLive);
+    v.addEventListener('timeupdate', () => { if (v.currentTime >= CONFIG.loopSeconds) v.currentTime = 0; });
+    v.addEventListener('error', () => { v.remove(); nativeEl = null; fallback(); }, { once: true });
+    film().insertBefore(v, $('.shade', film())); nativeEl = v;
+    const p = v.play(); if (p && p.catch) p.catch(() => { if (nativeEl) tap().hidden = false; });
+    // save battery and data on phones: run only while the frame is on screen
+    new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; if (!nativeEl) return; if (onScreen && !inReception) nativeEl.play().catch(() => {}); else nativeEl.pause(); }, { rootMargin: '120px' }).observe(film());
+  }
+  function loadYT() {
     if (!EMBEDS_OK) { fail('ytPreview'); return; }
     window.onYouTubeIframeAPIReady = () => {
       player = new YT.Player('yt-player', {
@@ -1699,9 +1720,9 @@ const Media = (() => {
         // mute:1 + playsinline:1 is what lets every mobile browser autoplay it
         playerVars: { autoplay: 1, mute: 1, controls: 0, playsinline: 1, start: 0, end: CONFIG.loopSeconds, rel: 0, modestbranding: 1, iv_load_policy: 3, disablekb: 1, fs: 0, cc_load_policy: 0, origin: location.origin },
         events: {
-          onReady: () => { ready = true; player.mute(); player.playVideo(); startGuard(); kick = setTimeout(() => { if (!playing) tap().hidden = false; }, 4500); },
+          onReady: () => { ready = true; player.mute(); player.playVideo(); startGuard(); },
           onStateChange: (e) => {
-            if (e.data === YT.PlayerState.PLAYING) { playing = true; reason = ''; showNote(); tap().hidden = true; film().classList.add('live'); }
+            if (e.data === YT.PlayerState.PLAYING) goLive();
             if (e.data === YT.PlayerState.ENDED) { player.seekTo(0, true); player.playVideo(); }
           },
           onError: () => fail('ytNa')
@@ -1714,10 +1735,12 @@ const Media = (() => {
   // Hard limit: never let playback run past loopSeconds, even if `end` is ignored by the browser.
   function startGuard() { clearInterval(guard); guard = setInterval(() => { try { player.isMuted() || player.mute(); if (player.getCurrentTime() >= CONFIG.loopSeconds - .2) player.seekTo(0, true); } catch (e) {} }, 250); }
   // Battery-saver modes can refuse autoplay; a tap starts it (still silent).
-  document.addEventListener('click', (e) => { if (e.target.closest('#yt-tap') && player) { try { player.mute(); player.playVideo(); } catch (x) {} } });
+  document.addEventListener('click', (e) => { if (!e.target.closest('#yt-tap')) return; if (nativeEl) { nativeEl.muted = true; nativeEl.play().catch(() => {}); return; } if (player) { try { player.mute(); player.playVideo(); } catch (x) {} } });
   // The film belongs to the wedding chapter: it rests while the reception is on screen.
   function chapter(ch) {
-    const was = inReception; inReception = ch === 'reception'; if (!ready || was === inReception) return;
+    const was = inReception; inReception = ch === 'reception'; if (was === inReception) return;
+    if (nativeEl) { if (inReception) nativeEl.pause(); else if (onScreen) nativeEl.play().catch(() => {}); return; }
+    if (!ready) return;
     try { inReception ? player.pauseVideo() : player.playVideo(); } catch (e) {}
   }
   langListeners.push(showNote);

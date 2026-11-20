@@ -810,6 +810,22 @@ h1.hero-names{font-family:var(--f-en-caps)}
 .chapter-card{min-height:230px}
 .trishul{display:none!important}
 @media (max-width:420px){.chapter-card .art.wc.photo{opacity:1;width:100%}}
+
+/* ===================== v8: self-review fixes ===================== */
+.chapter-card .m{padding-right:52px}
+.knot .mono-floral svg{transform:none!important;max-width:none!important;width:100%;height:auto}
+.havan .cap{position:relative;margin-top:58px;padding-inline:12px;line-height:1.5}
+.diya-row{flex-wrap:nowrap;gap:2px}
+@media (max-width:480px){.diya{width:42px;height:54px}}
+.dusk-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%}
+.sky.dawn,.dusk-hills,.dusk-sun{display:none}
+.sky.eve{opacity:calc(var(--p)*1.15);mix-blend-mode:multiply}
+.sky.night{opacity:calc((var(--p) - .5)*2.2)}
+.dusk-stage::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(75% 32% at 50% 50%,rgba(251,245,234,.95),rgba(251,245,234,.7) 55%,rgba(251,245,234,0));opacity:calc(1 - var(--p)*2.2);pointer-events:none}
+.dusk-text{z-index:3}.stars,.strings{z-index:2}
+.havan .kalash-f,.havan .diya-f{bottom:52px}
+.vine{display:none}
+@media (max-width:639px){.share-row{grid-template-columns:repeat(3,1fr);gap:8px}.share-btn{padding:12px 4px;font-size:.82rem}.share-btn small{font-size:.7rem}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .dusk{height:auto}.dusk-stage{position:relative;height:70vh;--p:1!important}
@@ -1031,7 +1047,7 @@ h1.hero-names{font-family:var(--f-en-caps)}
 
     <article class="letter rv">
       <svg class="corner tl" aria-hidden="true"><use href="#orn-corner"/></svg><svg class="corner tr" aria-hidden="true"><use href="#orn-corner"/></svg><svg class="corner bl" aria-hidden="true"><use href="#orn-corner"/></svg><svg class="corner br" aria-hidden="true"><use href="#orn-corner"/></svg>
-      <img class="ganesh ganesh-letter" src="img/ganesh.webp" alt="श्री गणेश / Lord Ganesha" loading="lazy">
+      <img class="letter-kalash" src="img/kalash.webp" alt="" loading="lazy">
       <p class="invocation"><span>॥ श्री गणेशाय नमः ॥</span><i>✦</i><span>॥ ॐ श्री कुलदेवतायै नमः ॥</span></p>
       <h3 class="letter-title"><span lang="hi">सादर स्नेह निमंत्रण</span><span lang="en">With love and respect, you are invited</span></h3>
       <img class="divider-img" src="img/divider.webp" alt="" loading="lazy">
@@ -1165,7 +1181,7 @@ h1.hero-names{font-family:var(--f-en-caps)}
 <!-- ============ DUSK TRANSITION ============ -->
 <section id="dusk" class="dusk" data-chapter="dusk" aria-label="अध्याय परिवर्तन / Transition to the reception">
   <div class="dusk-stage" id="dusk-stage">
-    <div class="sky dawn"></div><div class="sky eve"></div><div class="sky night"></div>
+    <img class="dusk-photo" src="img/temple-sunrise.webp" alt="" loading="lazy"><div class="sky dawn"></div><div class="sky eve"></div><div class="sky night"></div>
     <div class="stars" id="stars"></div>
     <div class="dusk-sun"></div>
     <svg class="dusk-hills" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">

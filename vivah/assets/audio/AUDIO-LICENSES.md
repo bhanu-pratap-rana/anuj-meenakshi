@@ -1,25 +1,25 @@
-# Audio licences — Anuj & Meenakshi invitation (`/vivah/`)
+# Audio sources and licences
 
-All audio comes from **Mixkit** (mixkit.co, by Envato). Downloaded 20 November 2026.
-Files were trimmed, faded, loudness-normalised and re-encoded for the web; the bell was given a short reverb tail.
+All files were downloaded on 20 November 2026 and then trimmed, faded and loudness-normalised for this invitation (a creative work that the sounds are part of, not redistributed on their own).
 
-Licence terms (read on https://mixkit.co/license/ on 20 Nov 2026):
-- **Mixkit Stock Music Free License** — free for commercial and non-commercial projects; may be distributed and publicly performed on any web platform. Not allowed: CDs/DVDs, video games, TV/radio, remixing into a music-only track, claiming as own, registering with a rights-management service. No attribution required.
-- **Mixkit Sound Effects Free License** — free for commercial and non-commercial projects as part of a larger end product. Not allowed: redistributing an item on its own, as stock, or claiming as own. No attribution required.
+## Licences
 
-| File | Mixkit title | Source URL (asset) | Listing page | Licence |
+- **Pixabay Content License** (pixabay.com/service/license-summary/): free to use, no attribution required, may be modified. Not allowed: selling or distributing the content on a standalone basis; use in trademarks; misleading or illegal use.
+- **Mixkit Sound Effects Free License** (mixkit.co): free for commercial and non-commercial projects as part of a larger end product; no attribution required; not to be redistributed on its own.
+
+## Files
+
+| File | Used for | Source | Creator | Licence |
 |---|---|---|---|---|
-| wedding/wedding-background.mp3 | Meditation Sitar | https://assets.mixkit.co/music/344/344.mp3 | https://mixkit.co/free-stock-music/tag/sitar/ | Stock Music Free |
-| reception/reception-background.mp3 | Romantic (first 124 s) | https://assets.mixkit.co/music/659/659.mp3 | https://mixkit.co/free-stock-music/tag/wedding/ | Stock Music Free |
-| wedding/temple-bell.mp3 | Relaxing bell chime | https://assets.mixkit.co/active_storage/sfx/3109/3109-preview.mp3 | https://mixkit.co/free-sound-effects/bell/ | Sound Effects Free |
-| wedding/flower-petals.mp3 | Air woosh | https://assets.mixkit.co/active_storage/sfx/1489/1489-preview.mp3 | https://mixkit.co/free-sound-effects/whoosh/ | Sound Effects Free |
-| wedding/diya-light.mp3 | Fire match lighting | https://assets.mixkit.co/active_storage/sfx/2590/2590-preview.mp3 | https://mixkit.co/free-sound-effects/fire/ | Sound Effects Free |
-| wedding/havan-fire.mp3 | Campfire crackles | https://assets.mixkit.co/active_storage/sfx/1330/1330-preview.mp3 | https://mixkit.co/free-sound-effects/fire/ | Sound Effects Free |
-| wedding/invitation-open.mp3 | Page forward single chime | https://assets.mixkit.co/active_storage/sfx/1107/1107-preview.mp3 | https://mixkit.co/free-sound-effects/paper/ | Sound Effects Free |
-| reception/royal-transition.mp3 | Relaxing harp sweep | https://assets.mixkit.co/active_storage/sfx/2628/2628-preview.mp3 | https://mixkit.co/free-sound-effects/magic/ | Sound Effects Free |
-| reception/golden-chime.mp3 | Magic sparkle touch | https://assets.mixkit.co/active_storage/sfx/3083/3083-preview.mp3 | https://mixkit.co/free-sound-effects/magic/ | Sound Effects Free |
-| common/button-click.mp3 | Select click | https://assets.mixkit.co/active_storage/sfx/1109/1109-preview.mp3 | https://mixkit.co/free-sound-effects/click/ | Sound Effects Free |
-| common/success-chime.mp3 | Wind chimes | https://assets.mixkit.co/active_storage/sfx/2014/2014-preview.mp3 | https://mixkit.co/free-sound-effects/wind-chimes/ | Sound Effects Free |
-| common/section-transition.mp3 | Magic transition sweep presentation | https://assets.mixkit.co/active_storage/sfx/2638/2638-preview.mp3 | https://mixkit.co/free-sound-effects/magic/ | Sound Effects Free |
+| wedding/shehnai-theme.mp3 | Wedding chapter background (loop) | https://pixabay.com/music/wedding-traditional-wedding-ceremonial-vibe-with-shehna-376293/ | DesiFreeMusic | Pixabay |
+| reception/sitar-bansuri-theme.mp3 | Reception chapter background (loop, first 3 minutes) | https://pixabay.com/music/world-cinematic-sitar-alap-bansuri-flute-436044/ | Pixel_Perfect_Productions | Pixabay |
+| wedding/shankh.mp3 | Opening the invitation (first blow only) | https://pixabay.com/sound-effects/musical-hindu-ritual-conch-sound-three-sacred-blows-327689/ | arunangshubanerjee | Pixabay |
+| wedding/opening-bell.mp3 | Opening the invitation | https://pixabay.com/sound-effects/film-special-effects-log-soft-low-frequency-bell-sound-temple-asmr-309725/ | kalsstockmedia | Pixabay |
+| wedding/temple-bell.mp3 | Hanging bells, Ganesh | https://pixabay.com/sound-effects/city-indian-temple-bell-68150/ | freesound_community | Pixabay |
+| wedding/diya-ghanti.mp3 | Lighting each diya (pitched up a note per diya) | https://pixabay.com/sound-effects/film-special-effects-ding-small-bell-sfx-411945/ | OxidVideos | Pixabay |
+| wedding/aarti-bell.mp3 | All 7 diyas lit | https://pixabay.com/sound-effects/film-special-effects-pooja-bell-fast-415391/ | T_Raviraj | Pixabay |
+| reception/evening-tingsha.mp3 | Switching to the reception chapter | https://pixabay.com/sound-effects/film-special-effects-tingsha-604512/ | Pixabay user u_tyb1ph6zay | Pixabay |
+| common/blessing-chimes.mp3 | RSVP sent | https://pixabay.com/sound-effects/film-special-effects-wind-chime-small-64660/ | freesound_community | Pixabay |
+| wedding/havan-fire.mp3 | Havan section (quiet loop) | Mixkit "Campfire crackles" (sound effect 1330) | Mixkit | Mixkit SFX |
 
-Selection note: tracks were chosen by title, genre tags, duration and spectrogram/loudness analysis. They were not listened to by a person before publishing; please listen once and replace any you dislike.
+Tracks were chosen by title, tags and audio analysis (spectrum, loudness); they still need one listening check by a person.

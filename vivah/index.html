@@ -1557,7 +1557,7 @@ function applyLang(next, keepPlace) {
   root.dataset.lang = next; root.lang = next;
   $$('[data-setlang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.setlang === next)));
   store.set('am-lang', next);
-  langListeners.forEach((f) => f()); if (keepPlace) Sound.play('section');
+  langListeners.forEach((f) => f());
   if (anchor) {
     const r = anchor.getBoundingClientRect();
     const target = scrollY + r.top + ratio * r.height - innerHeight * 0.35;
@@ -1596,14 +1596,16 @@ function ringBell(base = 660, vol = 0.18) {
 }
 
 
-/* ---------------- sound engine: recorded music + effects (Mixkit, see assets/audio/AUDIO-LICENSES.md) ---------------- */
-const SOUND = { base: 'assets/audio/', vol: { music: .26, bell: .36, sfx: .2, chime: .22, fire: .13 } };
+/* ---------------- sound engine: Indian music + temple sounds (Pixabay/Mixkit, see assets/audio/AUDIO-LICENSES.md) ----------------
+   Sparse by design: sound answers a meaningful gesture (bell, diya, opening, RSVP), never routine clicks or scrolling. */
+const SOUND = { base: 'assets/audio/', vol: { music: .24, bell: .3, ghanti: .2, open: .3, shankh: .14, aarti: .2, chime: .2, fire: .08 } };
+const DIYA_SCALE = [1, 9 / 8, 5 / 4, 3 / 2, 5 / 3, 2, 9 / 4]; // Sa Re Ga Pa Dha Sa' Re' — the 7 diyas play a rising pentatonic phrase
 const Sound = (() => {
-  const F = { wedding: 'wedding/wedding-background.mp3', reception: 'reception/reception-background.mp3', fire: 'wedding/havan-fire.mp3',
-    bell: 'wedding/temple-bell.mp3', petals: 'wedding/flower-petals.mp3', diya: 'wedding/diya-light.mp3', open: 'wedding/invitation-open.mp3',
-    royal: 'reception/royal-transition.mp3', chime: 'reception/golden-chime.mp3', click: 'common/button-click.mp3', success: 'common/success-chime.mp3', section: 'common/section-transition.mp3' };
-  const KIND = { bell: 'bell', petals: 'sfx', diya: 'sfx', open: 'sfx', click: 'sfx', section: 'sfx', royal: 'chime', chime: 'chime', success: 'chime' };
-  const COOL = { bell: 140, petals: 900, diya: 250, click: 120, chime: 700, royal: 20000, success: 1500, section: 800, open: 3000 };
+  const F = { wedding: 'wedding/shehnai-theme.mp3', reception: 'reception/sitar-bansuri-theme.mp3', fire: 'wedding/havan-fire.mp3',
+    bell: 'wedding/temple-bell.mp3', open: 'wedding/opening-bell.mp3', shankh: 'wedding/shankh.mp3', diya: 'wedding/diya-ghanti.mp3',
+    aarti: 'wedding/aarti-bell.mp3', royal: 'reception/evening-tingsha.mp3', success: 'common/blessing-chimes.mp3' };
+  const KIND = { bell: 'bell', open: 'open', shankh: 'shankh', diya: 'ghanti', aarti: 'aarti', royal: 'chime', success: 'chime' };
+  const COOL = { bell: 160, open: 3000, shankh: 8000, diya: 60, aarti: 4000, royal: 20000, success: 2500 };
   const LOOPS = { wedding: 'music', reception: 'music', fire: 'fire' };
   let on = store.get('am-sound') !== 'off';
   let master = Math.min(1, Math.max(0, +(store.get('am-vol') || 70) / 100));
@@ -1656,12 +1658,12 @@ const Sound = (() => {
     });
     $$('[data-vol]').forEach((r) => (r.value = Math.round(master * 100)));
   }
-  function unlock() { if (unlocked) return; unlocked = true; audio(); ['open', 'bell', 'petals', 'diya', 'click', 'chime'].forEach(load); mix(); render(); }
-  function toggle() { if (!unlocked) { on = true; unlock(); } else on = !on; store.set('am-sound', on ? 'on' : 'off'); mix(); render(); if (on) play('click'); }
+  // music waits for the opening shankh + bell to ring out, then rises underneath
+  function unlock(delay = 0) { if (unlocked) return; unlocked = true; audio(); ['open', 'shankh', 'bell', 'diya', 'aarti', 'success'].forEach(load); render(); setTimeout(mix, delay); }
+  function toggle() { if (!unlocked) { on = true; unlock(); } else on = !on; store.set('am-sound', on ? 'on' : 'off'); mix(); render(); }
   document.addEventListener('click', (e) => {
     if (e.target.closest('[data-sound]')) { toggle(); return; }
-    if (e.target.closest('[data-nav], .tab, .chapter-card, .dock button')) play('click');
-    if (e.target.closest('.ganesh')) { play('chime'); Petals.burstAt(e.target.closest('.ganesh'), 10); }
+    if (e.target.closest('.ganesh')) { play('bell', { rate: .84 }); Petals.burstAt(e.target.closest('.ganesh'), 10); }
   });
   document.addEventListener('input', (e) => {
     const r = e.target.closest('[data-vol]'); if (!r) return;
@@ -1896,8 +1898,8 @@ const Media = (() => {
     b.innerHTML = '<svg viewBox="0 0 56 70" aria-hidden="true"><circle class="glow" cx="28" cy="30" r="27" fill="url(#gGlow)"/><g class="flame"><g><path d="M28 12c4 6 7 10 7 15a7 7 0 0 1-14 0c0-5 3-9 7-15z" fill="url(#gFlame)"/><path d="M28 20c2 3 3 5 3 7a3 3 0 0 1-6 0c0-2 1-4 3-7z" fill="#FFF6D6"/></g></g><use href="#diya"/></svg>';
     b.addEventListener('click', () => {
       if (b.classList.contains('lit')) return; b.classList.add('lit'); b.setAttribute('aria-pressed', 'true'); lit++;
-      Sound.play('diya'); Petals.burstAt(b, 6); update();
-      if (lit === 7) { Petals.rain(30); Sound.play('petals'); setTimeout(() => Sound.play('success'), 400); }
+      Sound.play('diya', { rate: DIYA_SCALE[lit - 1] }); Petals.burstAt(b, 6); update();
+      if (lit === 7) { Petals.rain(30); setTimeout(() => Sound.play('aarti'), 650); }
     });
     row.append(b);
   }
@@ -2088,7 +2090,7 @@ function applyChapter(ch, id) {
   Sound.setChapter(ch);
 }
 (function observers() {
-  const io = new IntersectionObserver((ens) => ens.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); if (en.target.matches('.knot, .rcard')) Sound.play('chime'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -12% 0px' });
+  const io = new IntersectionObserver((ens) => ens.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -12% 0px' });
   const dh = document.getElementById('dhuni'); if (dh) new IntersectionObserver(([e]) => Sound.setFire(e.isIntersecting), { threshold: .25 }).observe(dh);
   if (!reduced()) $$('.rv, [data-observe]').forEach((el) => io.observe(el));
   const mono = $('#hero-mono');
@@ -2133,11 +2135,11 @@ function applyChapter(ch, id) {
 
   let opened = false;
   function open() {
-    if (opened) return; opened = true; Sound.unlock(); // the seal tap is the gesture that allows sound
-    Sound.play('open'); if (evening) Sound.setChapter('reception');
+    if (opened) return; opened = true; const quick = reduced(); Sound.unlock(quick ? 0 : 2200); // the seal tap is the gesture that allows sound
+    if (!quick) Sound.play('shankh'); setTimeout(() => Sound.play('open'), quick ? 0 : 900); if (evening) Sound.setChapter('reception');
     ov.classList.add('opened');
     const fast = reduced();
-    setTimeout(() => { Petals.rain(fast ? 6 : 32); Sound.play('petals'); }, fast ? 0 : 1300);
+    setTimeout(() => Petals.rain(fast ? 6 : 32), fast ? 0 : 1300);
     setTimeout(() => {
       ov.classList.add('gone'); root.classList.remove('locked'); window.__drawMono(); document.body.classList.add('entered');
       const target = document.getElementById(startRoute);

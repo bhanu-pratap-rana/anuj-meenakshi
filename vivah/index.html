@@ -9,6 +9,12 @@
 <meta property="og:description" content="शुभ विवाह: ९ दिसंबर २०२६, त्रियुगीनारायण मंदिर · स्वागत समारोह: ११ दिसंबर २०२६, धामपुर">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#6E1423">
+<meta property="og:url" content="https://bhanu-pratap-rana.github.io/anuj-meenakshi/vivah/">
+<meta property="og:image" content="https://bhanu-pratap-rana.github.io/anuj-meenakshi/vivah/img/og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%236E1423'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia' font-size='28' fill='%23F1DCA4'%3EA%26M%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="image" href="img/temple-sunrise.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&family=Rozha+One&family=Noto+Serif+Devanagari:wght@400;500;600&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap">
 <style>
@@ -624,7 +630,7 @@ html[data-lang="en"] .music-pill{font-family:var(--f-en-display);font-weight:600
 .tile::after{display:none}
 .tile span{color:var(--maroon)}
 .count{position:relative}
-@media (min-width:760px){.count::before,.count::after{content:"";position:absolute;top:38%;width:56px;height:2px;background:linear-gradient(90deg,transparent,var(--gold))}.count::before{left:-70px}.count::after{right:-70px;transform:scaleX(-1)}}
+@media (min-width:980px){.count::before,.count::after{content:"";position:absolute;top:38%;width:56px;height:2px;background:linear-gradient(90deg,transparent,var(--gold))}.count::before{left:-70px}.count::after{right:-70px;transform:scaleX(-1)}}
 /* reception decor */
 .drape{position:absolute;top:0;bottom:0;width:clamp(26px,8vw,120px);z-index:1;pointer-events:none;background:repeating-linear-gradient(90deg,#6B1A2C 0 10px,#3F0B17 10px 22px,#7A2033 22px 30px,#4A0E1C 30px 40px);transform-origin:top center}
 .drape.l{left:0;-webkit-mask:linear-gradient(90deg,#000 55%,transparent);mask:linear-gradient(90deg,#000 55%,transparent);border-bottom-right-radius:60% 30%}
@@ -826,6 +832,20 @@ h1.hero-names{font-family:var(--f-en-caps)}
 .havan .kalash-f,.havan .diya-f{bottom:52px}
 .vine{display:none}
 @media (max-width:639px){.share-row{grid-template-columns:repeat(3,1fr);gap:8px}.share-btn{padding:12px 4px;font-size:.82rem}.share-btn small{font-size:.7rem}}
+
+/* ===================== v9: sound controls ===================== */
+.music{border:1px solid var(--line);background:rgba(255,255,255,.55)}
+.music .ic{width:18px;height:18px}
+.vol-d{display:none;width:84px;accent-color:var(--maroon)}
+body.ch-reception .vol-d{accent-color:var(--champagne)}
+@media (min-width:980px){.vol-d{display:inline-block}}
+.sheet-card .vol-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:14px;background:var(--paper);color:var(--maroon)}
+.sheet-card .vol-row input{flex:1;accent-color:var(--maroon)}
+.ganesh{cursor:pointer}
+.sec-count{overflow:hidden}
+[data-sound] .eq{display:inline-flex;align-items:flex-end;gap:2px;width:16px;height:16px}
+[data-sound][data-state="on"] .eq i{animation:eq 1s ease-in-out infinite}
+[data-sound][data-state="on"] .eq i:nth-child(2){animation-delay:-.4s}[data-sound][data-state="on"] .eq i:nth-child(3){animation-delay:-.7s}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .dusk{height:auto}.dusk-stage{position:relative;height:70vh;--p:1!important}
@@ -943,6 +963,8 @@ h1.hero-names{font-family:var(--f-en-caps)}
     <li><a href="#rsvp" data-nav="rsvp"><span lang="hi">उत्तर दें</span><span lang="en">RSVP</span></a></li>
   </ul>
   <div class="tools">
+    <input class="vol-d" type="range" min="0" max="100" value="70" data-vol aria-label="ध्वनि स्तर / Volume">
+    <button class="music" data-sound data-state="off" aria-pressed="false"><svg class="icon ic"><use href="#i-sound"/></svg><span class="eq" aria-hidden="true" hidden><i></i><i></i><i></i></span><span class="lbl"></span></button>
     <div class="lang" role="group" aria-label="भाषा / Language">
       <button class="l-hi" data-setlang="hi" aria-pressed="true">हिंदी</button><button class="l-en" data-setlang="en" aria-pressed="false">EN</button>
     </div>
@@ -964,6 +986,8 @@ h1.hero-names{font-family:var(--f-en-caps)}
     <a href="#families" data-close><svg class="icon"><use href="#i-fam"/></svg><span lang="hi">परिवार</span><span lang="en">Our Families</span></a>
     <a href="#schedule" data-close><svg class="icon"><use href="#i-sched"/></svg><span lang="hi">कार्यक्रम</span><span lang="en">Schedule</span></a>
     <a href="#blessing" data-close><svg class="icon"><use href="#i-share"/></svg><span lang="hi">साझा करें व संपर्क</span><span lang="en">Share &amp; Contact</span></a>
+    <button class="row" data-sound data-state="off"><svg class="icon ic"><use href="#i-sound"/></svg><span class="eq" aria-hidden="true" hidden><i></i><i></i><i></i></span><span class="lbl"></span></button>
+    <label class="vol-row" for="snd-vol"><svg class="icon"><use href="#i-sound"/></svg><span lang="hi">ध्वनि स्तर</span><span lang="en">Volume</span><input id="snd-vol" type="range" min="0" max="100" value="70" data-vol></label>
   </div>
 </div>
 
@@ -1402,13 +1426,13 @@ document.querySelectorAll('img[data-dup]').forEach(function(i){var o=document.qu
    ===================================================================== */
 const CONFIG = {
   // Public URL used in WhatsApp share messages. Leave '' to use the current page URL.
-  siteUrl: '',
+  siteUrl: 'https://bhanu-pratap-rana.github.io/anuj-meenakshi/vivah/',
   // Wedding film: only the first `loopSeconds` play, then it restarts at 0.
   youtubeId: 'kQBRzTbaLEw',
   loopSeconds: 60,
   // Self-hosted copy of the first minute (placed next to index.html). Plays natively, no ads.
   // If the file is missing, the page falls back to the YouTube embed above.
-  videoFile: 'temple.mp4',
+  videoFile: '',          // set to 'temple.mp4' once a licensed 60-second clip is placed next to index.html
   // YouTube shows the channel's ads before this video and they cannot be disabled, so it stays off.
   youtubeFallback: false,
   // RSVP: with no endpoint, the guest's answer is composed into a WhatsApp message to this number.
@@ -1437,7 +1461,7 @@ const CONFIG = {
     durationHours: 4,
     rituals: [],
     lat: 29.3628357, lng: 78.4705115,
-    openUrl: 'https://www.google.com/maps/search/?api=1&query=29.3628357%2C78.4705115',
+    openUrl: 'https://www.google.com/maps/place/tularam+grand+restaurant/data=!4m2!3m1!1s0x390bc77011eb3c9d:0x726e239e13a498d6',
     dirUrl: 'https://www.google.com/maps/dir/?api=1&destination=29.3628357%2C78.4705115',
     embed: 'https://maps.google.com/maps?q=29.3628357,78.4705115&z=16&output=embed',
     address: "Tula Ram's Grand Restaurant, NH734, Opposite J.K Modern Law College, Dhampur, Hakimpurchandan, Uttar Pradesh 246761, India"
@@ -1477,9 +1501,9 @@ const STR = {
     wTitle: 'शुभ विवाह', rTitle: 'भव्य स्वागत समारोह', wPlace: 'त्रियुगीनारायण मंदिर, उत्तराखंड', rPlace: "तुला राम'स ग्रैंड रेस्टोरेंट, धामपुर",
     wDate: 'बुधवार, ९ दिसंबर २०२६', rDate: 'शुक्रवार, ११ दिसंबर २०२६',
     share: {
-      wedding: (u) => `॥ शुभ विवाह ॥\nअनुज संग मीनाक्षी\nबुधवार, ९ दिसंबर २०२६\nत्रियुगीनारायण मंदिर, उत्तराखंड\n\nआप सपरिवार सादर आमंत्रित हैं।\nनिमंत्रण देखें: ${u}`,
-      reception: (u) => `॥ भव्य स्वागत समारोह ॥\nअनुज संग मीनाक्षी\nशुक्रवार, ११ दिसंबर २०२६\nतुला राम'स ग्रैंड रेस्टोरेंट, धामपुर\n\nआप सपरिवार सादर आमंत्रित हैं।\nनिमंत्रण देखें: ${u}`,
-      all: (u) => `॥ सादर स्नेह निमंत्रण ॥\nअनुज संग मीनाक्षी\nशुभ विवाह: ९ दिसंबर २०२६, त्रियुगीनारायण मंदिर\nस्वागत समारोह: ११ दिसंबर २०२६, धामपुर\n\nनिमंत्रण देखें: ${u}`
+      wedding: (u) => `॥ शुभ विवाह ॥\nअनुज संग मीनाक्षी\nबुधवार, ९ दिसंबर २०२६ · प्रातः ११:०० बजे\nत्रियुगीनारायण मंदिर, उत्तराखंड\n\nआप सपरिवार सादर आमंत्रित हैं।\nनिमंत्रण देखें: ${u}`,
+      reception: (u) => `॥ भव्य स्वागत समारोह ॥\nअनुज संग मीनाक्षी\nशुक्रवार, ११ दिसंबर २०२६ · सायं ६:०० बजे\nतुला राम'स ग्रैंड रेस्टोरेंट, धामपुर\n\nआप सपरिवार सादर आमंत्रित हैं।\nनिमंत्रण देखें: ${u}`,
+      all: (u) => `॥ सादर स्नेह निमंत्रण ॥\nअनुज संग मीनाक्षी\nशुभ विवाह: ९ दिसंबर २०२६, प्रातः ११:०० बजे · त्रियुगीनारायण मंदिर\nस्वागत समारोह: ११ दिसंबर २०२६, सायं ६:०० बजे · तुला राम'स ग्रैंड रेस्टोरेंट, धामपुर\n\nनिमंत्रण देखें: ${u}`
     },
     rsvpMsg: (d) => `॥ निमंत्रण उत्तर · अनुज एवं मीनाक्षी ॥\nनाम: ${d.name}\nअतिथि: ${d.count}\nशुभ विवाह (९ दिसंबर): ${d.w}\nस्वागत समारोह (११ दिसंबर): ${d.r}${d.msg ? `\nसंदेश: ${d.msg}` : ''}`
   },
@@ -1503,9 +1527,9 @@ const STR = {
     wTitle: 'The Sacred Wedding', rTitle: 'The Grand Reception', wPlace: 'Triyuginarayan Temple, Uttarakhand', rPlace: "Tula Ram's Grand Restaurant, Dhampur",
     wDate: 'Wednesday, 9 December 2026', rDate: 'Friday, 11 December 2026',
     share: {
-      wedding: (u) => `The Wedding of Anuj & Meenakshi\nWednesday, 9 December 2026\nTriyuginarayan Temple, Uttarakhand\n\nYou and your family are warmly invited.\nView the invitation: ${u}`,
-      reception: (u) => `The Grand Reception of Anuj & Meenakshi\nFriday, 11 December 2026\nTula Ram's Grand Restaurant, Dhampur\n\nYou and your family are warmly invited.\nView the invitation: ${u}`,
-      all: (u) => `Anuj & Meenakshi\nWedding: 9 December 2026, Triyuginarayan Temple\nReception: 11 December 2026, Dhampur\n\nView the invitation: ${u}`
+      wedding: (u) => `The Wedding of Anuj & Meenakshi\nWednesday, 9 December 2026 · 11:00 AM\nTriyuginarayan Temple, Uttarakhand\n\nYou and your family are warmly invited.\nView the invitation: ${u}`,
+      reception: (u) => `The Grand Reception of Anuj & Meenakshi\nFriday, 11 December 2026 · 6:00 PM\nTula Ram's Grand Restaurant, Dhampur\n\nYou and your family are warmly invited.\nView the invitation: ${u}`,
+      all: (u) => `Anuj & Meenakshi\nWedding: 9 December 2026, 11:00 AM · Triyuginarayan Temple\nReception: 11 December 2026, 6:00 PM · Tula Ram's Grand Restaurant, Dhampur\n\nView the invitation: ${u}`
     },
     rsvpMsg: (d) => `RSVP · Anuj & Meenakshi\nName: ${d.name}\nGuests: ${d.count}\nWedding (9 Dec): ${d.w}\nReception (11 Dec): ${d.r}${d.msg ? `\nMessage: ${d.msg}` : ''}`
   }
@@ -1533,7 +1557,7 @@ function applyLang(next, keepPlace) {
   root.dataset.lang = next; root.lang = next;
   $$('[data-setlang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.setlang === next)));
   store.set('am-lang', next);
-  langListeners.forEach((f) => f());
+  langListeners.forEach((f) => f()); if (keepPlace) Sound.play('section');
   if (anchor) {
     const r = anchor.getBoundingClientRect();
     const target = scrollY + r.top + ratio * r.height - innerHeight * 0.35;
@@ -1571,6 +1595,91 @@ function ringBell(base = 660, vol = 0.18) {
   });
 }
 
+
+/* ---------------- sound engine: recorded music + effects (Mixkit, see assets/audio/AUDIO-LICENSES.md) ---------------- */
+const SOUND = { base: 'assets/audio/', vol: { music: .26, bell: .36, sfx: .2, chime: .22, fire: .13 } };
+const Sound = (() => {
+  const F = { wedding: 'wedding/wedding-background.mp3', reception: 'reception/reception-background.mp3', fire: 'wedding/havan-fire.mp3',
+    bell: 'wedding/temple-bell.mp3', petals: 'wedding/flower-petals.mp3', diya: 'wedding/diya-light.mp3', open: 'wedding/invitation-open.mp3',
+    royal: 'reception/royal-transition.mp3', chime: 'reception/golden-chime.mp3', click: 'common/button-click.mp3', success: 'common/success-chime.mp3', section: 'common/section-transition.mp3' };
+  const KIND = { bell: 'bell', petals: 'sfx', diya: 'sfx', open: 'sfx', click: 'sfx', section: 'sfx', royal: 'chime', chime: 'chime', success: 'chime' };
+  const COOL = { bell: 140, petals: 900, diya: 250, click: 120, chime: 700, royal: 20000, success: 1500, section: 800, open: 3000 };
+  const LOOPS = { wedding: 'music', reception: 'music', fire: 'fire' };
+  let on = store.get('am-sound') !== 'off';
+  let master = Math.min(1, Math.max(0, +(store.get('am-vol') || 70) / 100));
+  let unlocked = false, chapter = 'wedding', fireWanted = false;
+  const buf = {}, loading = {}, last = {}, tracks = {};
+  function track(key) {
+    if (tracks[key]) return tracks[key];
+    const ac = audio(), a = new Audio(SOUND.base + F[key]); a.loop = true; a.preload = 'auto';
+    const t = { a, target: 0, timer: 0, g: null, bad: false };
+    a.addEventListener('error', () => { t.bad = true; });
+    // route through Web Audio so fades work on iPhone (where <audio>.volume is read-only)
+    if (ac) { try { t.g = ac.createGain(); t.g.gain.value = 0; ac.createMediaElementSource(a).connect(t.g); t.g.connect(ac.destination); } catch (e) { t.g = null; } }
+    if (!t.g) a.volume = 0;
+    return (tracks[key] = t);
+  }
+  function setLevel(t, v, tc) { const ac = audio(); if (t.g && ac) { t.g.gain.cancelScheduledValues(ac.currentTime); t.g.gain.setTargetAtTime(v, ac.currentTime, tc); } else t.a.volume = v; }
+  function fade(key, target) {
+    if (!unlocked) return; const t = track(key); if (t.target === target) return;
+    t.target = target; clearTimeout(t.timer); setLevel(t, target * master, target > 0 ? .9 : .45);
+    if (target > 0) { if (t.a.paused && !t.bad) t.a.play().catch(() => {}); } else t.timer = setTimeout(() => t.a.pause(), 2400);
+  }
+  function mix() {
+    const want = on && unlocked && !document.hidden;
+    fade('wedding', want && chapter === 'wedding' ? SOUND.vol.music : 0);
+    fade('reception', want && chapter === 'reception' ? SOUND.vol.music : 0);
+    fade('fire', want && fireWanted && chapter === 'wedding' ? SOUND.vol.fire : 0);
+  }
+  function load(key) {
+    if (key in buf) return Promise.resolve(buf[key]); if (loading[key]) return loading[key];
+    const ac = audio(); if (!ac) return Promise.resolve(null);
+    return (loading[key] = fetch(SOUND.base + F[key]).then((r) => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+      .then((b) => new Promise((res, rej) => ac.decodeAudioData(b, res, rej))).then((d) => (buf[key] = d)).catch(() => (buf[key] = null)));
+  }
+  function play(key, { rate = 1, gain = 1 } = {}) {
+    if (!on || !unlocked) return; const now = performance.now();
+    if (last[key] && now - last[key] < (COOL[key] || 200)) return; last[key] = now;
+    const ac = audio(); if (!ac) return;
+    load(key).then((d) => {
+      if (!d) { if (key === 'bell') ringBell(660 * rate, .14 * master); return; }
+      const s = ac.createBufferSource(), g = ac.createGain(); s.buffer = d; s.playbackRate.value = rate;
+      g.gain.value = (SOUND.vol[KIND[key]] || .2) * gain * master; s.connect(g); g.connect(ac.destination); s.start();
+    });
+  }
+  function render() {
+    const st = on && unlocked ? 'on' : 'off', l = S(st === 'on' ? 'musicOn' : unlocked ? 'musicOff' : 'musicIdle');
+    $$('[data-sound]').forEach((b) => {
+      b.dataset.state = st; b.setAttribute('aria-pressed', String(st === 'on')); b.setAttribute('aria-label', l); b.title = l;
+      const lb = $('.lbl', b); if (lb) lb.textContent = l; const eq = $('.eq', b); if (eq) eq.hidden = st !== 'on';
+      const ic = $('.ic', b); if (ic) ic.style.display = st === 'on' ? 'none' : '';
+    });
+    $$('[data-vol]').forEach((r) => (r.value = Math.round(master * 100)));
+  }
+  function unlock() { if (unlocked) return; unlocked = true; audio(); ['open', 'bell', 'petals', 'diya', 'click', 'chime'].forEach(load); mix(); render(); }
+  function toggle() { if (!unlocked) { on = true; unlock(); } else on = !on; store.set('am-sound', on ? 'on' : 'off'); mix(); render(); if (on) play('click'); }
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('[data-sound]')) { toggle(); return; }
+    if (e.target.closest('[data-nav], .tab, .chapter-card, .dock button')) play('click');
+    if (e.target.closest('.ganesh')) { play('chime'); Petals.burstAt(e.target.closest('.ganesh'), 10); }
+  });
+  document.addEventListener('input', (e) => {
+    const r = e.target.closest('[data-vol]'); if (!r) return;
+    master = +r.value / 100; store.set('am-vol', String(r.value)); $$('[data-vol]').forEach((x) => { if (x !== r) x.value = r.value; });
+    Object.values(tracks).forEach((t) => setLevel(t, t.target * master, .15));
+  });
+  document.addEventListener('visibilitychange', () => { if (!unlocked) return; if (document.hidden) Object.values(tracks).forEach((t) => t.a.pause()); else Object.values(tracks).forEach((t) => { if (t.target > 0 && !t.bad) t.a.play().catch(() => {}); }); });
+  langListeners.push(render);
+  return {
+    unlock, play, render,
+    setChapter(c) { if (c !== 'wedding' && c !== 'reception') return; const prev = chapter; chapter = c; if (prev !== c && c === 'reception') play('royal'); mix(); },
+    setFire(v) { if (fireWanted === v) return; fireWanted = v; mix(); },
+    get on() { return on && unlocked; },
+    get _t() { return Object.fromEntries(Object.entries(tracks).map(([k, t]) => [k, { paused: t.a.paused, time: +t.a.currentTime.toFixed(2), target: t.target, bad: t.bad }])); },
+    get _b() { return Object.fromEntries(Object.entries(buf).map(([k, v]) => [k, !!v])); }
+  };
+})();
+
 /* ---------------- spring pendulums (bells, chandelier strands) ---------------- */
 const swings = new Set(); let swingRaf = 0, swingLast = 0;
 class Swing {
@@ -1591,7 +1700,7 @@ function swingLoop(now) {
 }
 $$('[data-bell]').forEach((b) => {
   const sw = new Swing(b, { k: 14, c: 1.1 });
-  b.addEventListener('click', () => { sw.kick((Math.random() > .5 ? 1 : -1) * 3.2); ringBell(+b.dataset.bell); Petals.burstAt(b); });
+  b.addEventListener('click', () => { sw.kick((Math.random() > .5 ? 1 : -1) * 3.2); Sound.play('bell', { rate: +b.dataset.bell / 720 }); Petals.burstAt(b); });
   b.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') sw.kick(.9); });
 });
 
@@ -1787,8 +1896,8 @@ const Media = (() => {
     b.innerHTML = '<svg viewBox="0 0 56 70" aria-hidden="true"><circle class="glow" cx="28" cy="30" r="27" fill="url(#gGlow)"/><g class="flame"><g><path d="M28 12c4 6 7 10 7 15a7 7 0 0 1-14 0c0-5 3-9 7-15z" fill="url(#gFlame)"/><path d="M28 20c2 3 3 5 3 7a3 3 0 0 1-6 0c0-2 1-4 3-7z" fill="#FFF6D6"/></g></g><use href="#diya"/></svg>';
     b.addEventListener('click', () => {
       if (b.classList.contains('lit')) return; b.classList.add('lit'); b.setAttribute('aria-pressed', 'true'); lit++;
-      ringBell(1320 + i * 90, .05); Petals.burstAt(b, 6); update();
-      if (lit === 7) { Petals.rain(30); ringBell(560, .14); }
+      Sound.play('diya'); Petals.burstAt(b, 6); update();
+      if (lit === 7) { Petals.rain(30); Sound.play('petals'); setTimeout(() => Sound.play('success'), 400); }
     });
     row.append(b);
   }
@@ -1915,7 +2024,7 @@ langListeners.push(wireLinks);
     $('#summary').innerHTML = `<div><b>${S('lName')}:</b> ${esc(d.name)}</div><div><b>${S('lCount')}:</b> ${num(d.count)}</div><div><b>${S('lW')}:</b> ${A[d.wedding]}</div><div><b>${S('lR')}:</b> ${A[d.reception]}</div>${d.message ? `<div><b>${S('lMsg')}:</b> ${esc(d.message)}</div>` : ''}`;
     $('#rsvp-wa').href = waHref(d);
     f.hidden = true; done.hidden = false; done.focus({ preventScroll: true });
-    Petals.burstAt($('.seal-ok', done), 22);
+    Petals.burstAt($('.seal-ok', done), 22); Sound.play('success');
   }
   f.addEventListener('submit', async (e) => {
     e.preventDefault(); const d = data(); err.textContent = '';
@@ -1976,9 +2085,11 @@ function applyChapter(ch, id) {
   Petals.setMode(ch === 'reception' ? 'reception' : 'wedding');
   Petals.setAmbient(['home', 'chapters', 'reception'].includes(id));
   Media.chapter(ch);
+  Sound.setChapter(ch);
 }
 (function observers() {
-  const io = new IntersectionObserver((ens) => ens.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -12% 0px' });
+  const io = new IntersectionObserver((ens) => ens.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); if (en.target.matches('.knot, .rcard')) Sound.play('chime'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -12% 0px' });
+  const dh = document.getElementById('dhuni'); if (dh) new IntersectionObserver(([e]) => Sound.setFire(e.isIntersecting), { threshold: .25 }).observe(dh);
   if (!reduced()) $$('.rv, [data-observe]').forEach((el) => io.observe(el));
   const mono = $('#hero-mono');
   const navMap = { home: 'home', chapters: 'home', wedding: 'wedding', dhuni: 'wedding', countdown: 'wedding', families: 'families', dusk: 'reception', reception: 'reception', schedule: 'reception', venue: 'venue', rsvp: 'rsvp', blessing: 'rsvp' };
@@ -2022,11 +2133,11 @@ function applyChapter(ch, id) {
 
   let opened = false;
   function open() {
-    if (opened) return; opened = true; audio(); // unlock Web Audio inside the gesture
-    ringBell(evening ? 990 : 720, .12);
+    if (opened) return; opened = true; Sound.unlock(); // the seal tap is the gesture that allows sound
+    Sound.play('open'); if (evening) Sound.setChapter('reception');
     ov.classList.add('opened');
     const fast = reduced();
-    setTimeout(() => Petals.rain(fast ? 6 : 32), fast ? 0 : 1300);
+    setTimeout(() => { Petals.rain(fast ? 6 : 32); Sound.play('petals'); }, fast ? 0 : 1300);
     setTimeout(() => {
       ov.classList.add('gone'); root.classList.remove('locked'); window.__drawMono(); document.body.classList.add('entered');
       const target = document.getElementById(startRoute);
@@ -2061,7 +2172,8 @@ function applyChapter(ch, id) {
 /* ---------------- boot ---------------- */
 const qLang = new URLSearchParams(location.search).get('lang');
 setLang(qLang || store.get('am-lang') || 'hi', false);
-Media.load();
+Media.load(); Sound.render();
+window.__am = { Sound, tracks: () => Sound._t, CONFIG };
 })();
 
 </script>
